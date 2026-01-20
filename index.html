@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>DOCUMENT SELECTION ANNOUNCEMENT</title>
+    <style>
+      body {
+        background-image: url(https://c4.wallpaperflare.com/wallpaper/710/68/1008/trees-mountain-lake-shore-wallpaper-preview.jpg);
+        background-size: cover;
+        background-position: center;
+      }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  </head>
+
+  <body class="flex justify-center items-center min-h-screen p-4">
+    <main class="bg-white rounded-xl p-8 shadow-2xl max-w-md w-full animate__animated animate__backInDown text-center">
+
+      <img
+        class="cat-img mx-auto block object-contain mb-4 rounded-lg"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjuaitF046hU7cqKwaTneljYJvI7tO9mCS_4RuNa76pQ-dfzT6g_y1S9uP5kt2nNFlzU-5cBvB0TM88HpT_KJtKK3kfP8-IYzvVYWl35eJXhlRrjFUUvTxxh_7ogZin0_0wpj0X9yrU3Ww/s640/envelope.gif"
+        alt="ANNOUNCEMENT"
+        style="width: 300px; height: 250px;"
+      />
+
+      <div class="border-b-2 border-gray-100 my-4"></div>
+
+      <div id="initial-content">
+        <h2 class="title text-gray-600 text-xl font-semibold">
+          Terima kasih atas partisipasi anda,
+        </h2>
+        <p class="question text-2xl font-bold text-gray-800 mt-2">
+          Oke, ayo lihat pengumuman sekarang!!!
+        </p>
+
+        <div class="buttons mt-8 flex justify-center gap-4">
+          <button
+            type="button"
+            class="btn-yes bg-green-500 hover:bg-green-600 transition-all rounded-lg text-white text-2xl px-6 py-2 animate__pulse animate__animated animate__infinite"
+          >
+            Oke
+          </button>
+          <button
+            type="button"
+            class="btn-no bg-red-500 hover:bg-red-600 transition-all rounded-lg text-white text-2xl px-6 py-2"
+          >
+            Tunggu
+          </button>
+        </div>
+      </div>
+
+      <div id="announcement-content" class="hidden animate__animated animate__fadeInUp">
+        <h2 class="text-3xl font-black text-green-600 mb-4">🎉 SELAMAT!! 🎉</h2>
+        <p class="text-gray-700 leading-relaxed mb-6">
+          "Anda telah lolos ke tahap selanjutnya, perjalanan belum berakhir. Tetaplah antusias dan bersiaplah untuk tantangan berikutnya"
+        </p>
+
+        <a href="https://chat.whatsapp.com/I7H2laU89h2L3LF4OiJFB4" class="inline-block w-full">
+          <button
+            type="button"
+            class="w-full bg-green-500 hover:bg-green-600 rounded-xl text-white font-bold text-xl py-4 shadow-lg animate__pulse animate__animated animate__infinite"
+          >
+            KLIK DISINI UNTUK GABUNG GRUP
+          </button>
+        </a>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+
+    <script>
+      const catImg = document.querySelector(".cat-img");
+      const initialContent = document.getElementById("initial-content");
+      const announcementContent = document.getElementById("announcement-content");
+      const yesButton = document.querySelector(".btn-yes");
+      const noButton = document.querySelector(".btn-no");
+
+      let count = 0;
+      const MAX_IMAGES = 5;
+
+      const listGambar = [
+        "https://media.tenor.com/dKJ_vGqO9qgAAAAM/nailong-yellow-dragon.gif",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTWXgTYXZ_l0FQrUY4-flHiOs0QlNl8GzTJqDJ8hlky3avrGMV4KNq8ZPURriGo8XXpqo&usqp=CAU",
+        "https://media.tenor.com/fBT-KRZP79IAAAAM/yellow-dragon-nailong.gif",
+        "https://media.tenor.com/3-SEeLRRnLUAAAAM/%E5%A5%B6%E9%BE%99.gif",
+        "https://i.pinimg.com/736x/7c/9c/a9/7c9ca98fdf96382d685e5b59c0dda0aa.jpg",
+        "logo.png" // Gambar terakhir saat klik Oke
+      ];
+
+      const messages = ["Tunggu", "Yakin?", "Bentar dulu", "Sabar ya", "Dikit lagi", "Klik Oke aja!"];
+
+      // Fungsi Tombol "Tunggu" (No)
+      noButton.addEventListener("click", () => {
+        if (count < MAX_IMAGES) {
+          catImg.src = listGambar[count];
+          noButton.innerHTML = messages[count + 1] || "Oke deh";
+          count++;
+        }
+      });
+
+      // Fungsi Tombol "Oke" (Yes)
+      yesButton.addEventListener("click", () => {
+        // Ganti gambar ke logo.png (index ke-5)
+        catImg.src = listGambar[5];
+
+        // Sembunyikan konten lama, munculkan pengumuman
+        initialContent.classList.add("hidden");
+        announcementContent.classList.remove("hidden");
+
+        // Efek Confetti
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#22c55e', '#ffffff', '#fbbf24']
+        });
+      });
+    </script>
+  </body>
+</html>
